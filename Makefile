@@ -40,9 +40,7 @@ LIBS     = -lpspgu      \
            -lpspdisplay \
            -lpspaudio   \
            -lpspctrl    \
-           -lpspiofilemgr \
            -lpsppower   \
-           -lpspkernel_stub \
            -lm
 
 PSPSDK   = $(shell psp-config --pspsdk-path)
