@@ -5,7 +5,7 @@
 #include <pspgu.h>
 #include <pspdisplay.h>
 #include <pspgum.h>
-#include <pspcache.h>
+#include <psputils.h>
 #include <string.h>
 #include <stdlib.h>
 #include <math.h>
