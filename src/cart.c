@@ -24,7 +24,6 @@ int cart_load(Cart *cart, const char *path) {
     int chr_banks = header[5];
     int flags6    = header[6];
     int flags7    = header[7];
-    int flags9    = header[9];
 
     /* Detect NES 2.0 */
     int nes2 = ((flags7 & 0x0C) == 0x08);

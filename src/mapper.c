@@ -378,13 +378,6 @@ static void m71_prg_write(Mapper *m, uint16_t a, uint8_t v) {
 }
 
 /* ===== Generic helpers ===== */
-static uint8_t generic_prg_read(Mapper *m, uint16_t a) {
-    if (a >= 0x8000) {
-        return m->cart->prg_rom[(a - 0x8000) & (m->cart->prg_size * 16384 - 1)];
-    }
-    return 0;
-}
-static void noop_write(Mapper *m, uint16_t a, uint8_t v) { (void)m;(void)a;(void)v; }
 static void noop_step(Mapper *m) { (void)m; }
 static void noop_reset(Mapper *m) { (void)m; }
 static void noop_free(Mapper *m) { free(m->data); free(m); }

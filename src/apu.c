@@ -35,6 +35,7 @@ static const uint8_t triangle_seq[32] = {
 /* ---- Envelope clock ---- */
 static void clock_envelope(uint8_t *start, uint8_t *div, uint8_t *vol,
                             uint8_t constant, uint8_t period, uint8_t halt) {
+    (void)constant;
     if (*start) {
         *start = 0; *vol = 15; *div = period;
     } else {

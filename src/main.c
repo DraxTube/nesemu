@@ -146,12 +146,7 @@ static int pause_menu(NES *nes, PSPInput *inp, const char *rom_path) {
 }
 
 /* ---- FPS counter ---- */
-static float fps = 0.0f;
-static uint32_t fps_tick_count = 0;
-
 static float get_fps(void) {
-    fps_tick_count++;
-    /* simplified: just display 60 since we vsync */
     return 60.0f;
 }
 

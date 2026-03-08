@@ -5,6 +5,7 @@
 #include <pspgu.h>
 #include <pspdisplay.h>
 #include <pspgum.h>
+#include <pspcache.h>
 #include <string.h>
 #include <stdlib.h>
 #include <math.h>
@@ -38,9 +39,6 @@ static Vertex __attribute__((aligned(16))) verts[2];
 
 static uint32_t *draw_buf(void) {
     return (uint32_t *)(VRAM_BASE + (buf_idx ? DISP_BUF_ADDR : DRAW_BUF_ADDR));
-}
-static uint32_t *disp_buf(void) {
-    return (uint32_t *)(VRAM_BASE + (buf_idx ? DRAW_BUF_ADDR : DISP_BUF_ADDR));
 }
 
 void psp_video_init(void) {
