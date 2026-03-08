@@ -1,0 +1,42 @@
+name: Build NESPSP
+
+on:
+  push:
+    branches: [ main, master ]
+  pull_request:
+    branches: [ main, master ]
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    container:
+      image: pspdev/pspdev:latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Install dependencies
+        run: |
+          apk add --no-cache make git
+
+      - name: Build
+        run: |
+          export PSPDEV=/usr/local/pspdev
+          export PSPSDK=$PSPDEV/psp/sdk
+          export PATH=$PATH:$PSPDEV/bin:$PSPDEV/psp/bin
+          make -j$(nproc)
+
+      - name: Upload EBOOT.PBP
+        uses: actions/upload-artifact@v4
+        with:
+          name: NESPSP-EBOOT
+          path: EBOOT.PBP
+          retention-days: 30
+
+      - name: Upload release assets
+        if: github.event_name == 'push' && contains(github.ref, 'refs/tags/')
+        uses: softprops/action-gh-release@v1
+        with:
+          files: EBOOT.PBP
